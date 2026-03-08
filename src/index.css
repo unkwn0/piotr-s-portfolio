@@ -2,104 +2,188 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --bg: 0 0% 5.5%;
+    --surface: 0 0% 8.6%;
+    --ink: 30 14% 87%;
+    --cream: 36 27% 93%;
+    --red: 10 64% 46%;
+    --ochre: 43 85% 38%;
+    --forest: 150 33% 26%;
+    --rule: 28 8% 21%;
+    --faded: 30 10% 55%;
+    --faded-strong: 32 12% 65%;
+    --accent-bg: 27 20% 8.5%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: var(--bg);
+    --foreground: var(--ink);
+    --primary: var(--red);
+    --primary-foreground: var(--cream);
+    --secondary: var(--surface);
+    --secondary-foreground: var(--ink);
+    --muted: var(--surface);
+    --muted-foreground: var(--faded);
+    --accent: var(--accent-bg);
+    --accent-foreground: var(--cream);
+    --destructive: var(--red);
+    --destructive-foreground: var(--cream);
+    --border: var(--rule);
+    --input: var(--rule);
+    --ring: var(--red);
+    --card: var(--bg);
+    --card-foreground: var(--ink);
+    --popover: var(--bg);
+    --popover-foreground: var(--ink);
+    --radius: 0px;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  * { @apply border-border; }
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+  body {
+    font-family: 'Spectral', serif;
+    font-weight: 400;
+    background-color: hsl(var(--bg));
+    color: hsl(var(--ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Old Standard TT', serif;
+    color: hsl(var(--cream));
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
 
-  body {
-    @apply bg-background text-foreground;
+/* Language switching */
+.show-en .lang-en { display: revert; }
+.show-en .lang-pl { display: none; }
+.show-pl .lang-pl { display: revert; }
+.show-pl .lang-en { display: none; }
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  background: hsl(var(--red));
+  color: hsl(var(--cream));
+  font-family: 'Old Standard TT', serif;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid hsl(var(--red));
+  outline-offset: 3px;
+}
+
+/* Labels / eyebrows */
+.eyebrow {
+  font-family: 'Old Standard TT', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--faded));
+}
+
+/* Section rule */
+.section-rule {
+  border-bottom: 1px solid hsl(var(--rule));
+}
+
+/* Drop cap */
+.drop-cap::first-letter {
+  font-family: 'Old Standard TT', serif;
+  font-size: 3.4rem;
+  float: left;
+  line-height: 1;
+  margin-right: 0.5rem;
+  margin-top: 0.15rem;
+  color: hsl(var(--red));
+  font-weight: 700;
+}
+
+/* CTA button */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Old Standard TT', serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 1px solid hsl(var(--cream));
+  color: hsl(var(--cream));
+  background: transparent;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: color 400ms ease;
+  z-index: 1;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: hsl(var(--cream));
+  transform: translateY(100%);
+  transition: transform 400ms ease;
+  z-index: -1;
+}
+.cta-btn:hover::before {
+  transform: translateY(0);
+}
+.cta-btn:hover {
+  color: hsl(var(--bg));
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  body::before {
+    display: none;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
